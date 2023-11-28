@@ -6,6 +6,7 @@ import com.example.clientcrud.repositories.ClientRepository;
 import com.example.clientcrud.services.exceptions.DatabaseException;
 import com.example.clientcrud.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -18,15 +19,8 @@ import java.util.Optional;
 @Service
 public class ClientService {
 
+    @Autowired
    private ClientRepository repository;
-
-    public ClientRepository getrepository() {
-        return repository;
-    }
-
-    public void setrepository(ClientRepository repository) {
-        this.repository = repository;
-    }
 
     @Transactional(readOnly = true)
     public Page<ClientDTO> findAllPaged(Pageable pageable) {
